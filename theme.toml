@@ -240,7 +240,9 @@ menu = [
     { name = "projects", url = "projects", trailing_slash = true },
 ]
 
-# The RSS icon will be shown if (1) it's enabled and (2) the following variable is set to true.
+# The RSS icon will be shown if (1) it's enabled and (2) the following variable is set.
+# Set to true to use the default "rss" icon, or specify a custom icon name (e.g. "square-rss").
+# The icon must exist in static/social_icons/ (without the .svg extension).
 # Note for Zola 0.19.X users: when `feed_filenames` has two filenames, only the first one will be linked in the footer.
 feed_icon = true
 
@@ -331,7 +333,7 @@ custom_subset = true
 # Unique identifier for tracking.
 # For GoatCounter, this is the code you choose during signup.
 # For Umami, this is the website ID.
-# For Plausible, this is the domain name (e.g. "example.com").
+# For Plausible, this is the random script name without the extension (e.g. "pa-XXXXXX") or the domain name (legacy mode, e.g. "example.com").
 # Note: Leave this field empty if you're self-hosting GoatCounter.
 # id = "yourID"
 
@@ -386,7 +388,7 @@ do_not_track = true
 # lazy_loading = true
 
 # Isso support for comments. https://isso-comments.de/
-# You need to self-host the backend first: https://blog.phusion.nl/2018/08/16/isso-simple-self-hosted-commenting-system/
+# You need to self-host the backend first: https://blog.phusion.nl/isso-simple-self-hosted-commenting-system/
 # More info on some settings: https://isso-comments.de/docs/reference/client-config/
 [extra.isso]
 # enabled_for_all_posts = false  # Enables Isso on all posts. It can be enabled on individual posts by setting `isso = true` in the [extra] section of a post's front matter.

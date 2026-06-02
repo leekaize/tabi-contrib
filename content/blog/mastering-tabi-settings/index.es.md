@@ -1,7 +1,7 @@
 +++
 title = "Domina la configuración de tabi: guía completa"
 date = 2023-09-18
-updated = 2025-08-07
+updated = 2026-01-31
 description = "Descubre las múltiples maneras en que puedes personalizar tabi."
 
 [taxonomies]
@@ -403,12 +403,17 @@ weight = 1
 
 [extra]
 local_image = "img/tabi.webp"
+invertible_image = false
 ```
 
 - `title` es el título del proyecto.
 - `description` es la descripción del proyecto.
 - `weight` determina el orden en el que se muestran los proyectos. Cuanto menor sea el peso, más arriba aparecerá el proyecto.
 - `local_image` es la ruta de la imagen del proyecto. Esta imagen se muestra en la página de proyectos.
+- `local_image_dark` es una variante opcional para el modo oscuro. Requiere que `local_image` esté configurado.
+- `remote_image` es una URL a una imagen externa, como alternativa a `local_image`.
+- `remote_image_dark` es una variante opcional para el modo oscuro. Requiere que `remote_image` esté configurado.
+- `invertible_image` invierte los colores de la imagen en modo oscuro. Útil para logotipos o iconos en blanco y negro.
 
 Cuando un usuario haga clic en la imagen o el título de un proyecto, será llevado a la página del proyecto. Si prefieres que los usuarios vayan a un enlace externo, puedes establecer `link_to = "https://example.com"` en la sección `[extra]` del archivo `.md` del proyecto.
 
@@ -827,7 +832,9 @@ Puedes configurarlos en la sección `[extra.analytics]` de tu archivo `config.to
 - `id`: el identificador único para tu servicio de análisis. Esto varía según el servicio:
   - Para GoatCounter, es el código elegido durante el registro. Instancias auto-alojadas de GoatCounter no requieren este campo.
   - Para Umami, es la ID del sitio web.
-  - Para Plausible, es el nombre de dominio.
+  - Para Plausible, puede ser:
+    - **Formato nuevo** (Plausible v3.1.0+): El nombre de script aleatorio sin la extensión (ej. `"pa-XXXXXX"`). Encuéntralo en tu panel de Plausible en Ajustes → Detalles del sitio web → Nombre del script.
+    - **Formato heredado**: Tu nombre de dominio (ej. `"example.com"`). Útil si necesitas enviar estadísticas a múltiples paneles simultáneamente; el nuevo formato no admite esta funcionalidad. Consulta la [guía de actualización de scripts de Plausible](https://plausible.io/docs/script-update-guide) para más detalles.
 
 - `self_hosted_url`. Opcional. Utiliza este campo para especificar la URL si tienes una instancia auto-alojada. La URL base variará según tu configuración particular. Algunos ejemplos:
   - Para GoatCounter: `"https://stats.example.com"`
@@ -886,6 +893,8 @@ Para usar un icono personalizado, puedes añadirlo al directorio `static/social_
 |   ❌   |   ❌    |      ✅       |         ❌        |         ❌          |
 
 Puedes añadir un enlace a tu feed RSS/Atom en el pie de página con `feed_icon = true`.
+
+Para usar un icono personalizado, establece `feed_icon` con el nombre del icono (por ejemplo, `feed_icon = "square-rss"`). El icono debe existir en `static/social_icons/` (sin la extensión `.svg`).
 
 Nota para usuarios de Zola 0.19.X: cuando hay dos nombres de archivo en `feed_filenames`, solo se enlazará el primero en el pie de página.
 

@@ -1,7 +1,7 @@
 +++
 title = "Domina la configuració de tabi: guia completa"
 date = 2023-09-18
-updated = 2025-08-07
+updated = 2026-01-31
 description = "Descobreix les múltiples maneres en què pots personalitzar tabi."
 
 [taxonomies]
@@ -402,12 +402,17 @@ weight = 1
 
 [extra]
 local_image = "img/tabi.webp"
+invertible_image = false
 ```
 
 - `title` és el títol del projecte.
 - `description` és la descripció del projecte.
 - `weight` determina l'ordre en què es mostren els projectes. Com menor sigui el pes, més amunt apareixerà el projecte.
 - `local_image` és la ruta de la imatge del projecte. Aquesta imatge es mostra a la pàgina de projectes.
+- `local_image_dark` és una variant opcional per al mode fosc. Requereix que `local_image` estigui configurat.
+- `remote_image` és una URL a una imatge externa, com a alternativa a `local_image`.
+- `remote_image_dark` és una variant opcional per al mode fosc. Requereix que `remote_image` estigui configurat.
+- `invertible_image` inverteix els colors de la imatge en mode fosc. Útil per a logotips o icones en blanc i negre.
 
 Quan un usuari faci clic a la imatge o al títol d'un projecte, serà portat a la pàgina del projecte. Si prefereixes que els usuaris vagin a un enllaç extern, pots establir `link_to = "https://example.com"` a la secció `[extra]` del fitxer `.md` del projecte.
 
@@ -824,7 +829,9 @@ Pots configurar-los en la secció `[extra.analytics]` del teu arxiu `config.toml
 - `id`: l'identificador únic per al teu servei d'anàlisi. Això varia segons el servei:
   - Per a GoatCounter, és el codi triat durant el registre. Instàncies auto-allotjades de GoatCounter no requereixen aquest camp.
   - Per a Umami, és l'ID del lloc web.
-  - Per a Plausible, és el nom de domini.
+  - Per a Plausible, pot ser:
+    - **Format nou** (Plausible v3.1.0+): El nom d'script aleatori sense l'extensió (ex. `"pa-XXXXXX"`). Troba'l al teu panell de Plausible a Configuració → Detalls del lloc web → Nom de l'script.
+    - **Format heretat**: El teu nom de domini (ex. `"example.com"`). Útil si necessites enviar estadístiques a múltiples panells simultàniament; el nou format no admet aquesta funcionalitat. Consulta la [guia d'actualització d'scripts de Plausible](https://plausible.io/docs/script-update-guide) per a més detalls.
 
 - `self_hosted_url`: Opcional. Utilitza aquest camp per especificar l'URL si tens una instància auto-allotjada. L'URL base variarà segons la teva configuració particular. Alguns exemples:
   - Per a GoatCounter: `"https://stats.example.com"`
@@ -881,6 +888,8 @@ Per utilitzar una icona personalitzada, pots afegir-la al directori `static/soci
 |   ❌   |   ❌    |      ✅       |          ❌           |         ❌          |
 
 Pots afegir un enllaç al teu feed RSS/Atom al peu de pàgina amb `feed_icon = true`.
+
+Per utilitzar una icona personalitzada, estableix `feed_icon` amb el nom de la icona (per exemple, `feed_icon = "square-rss"`). La icona ha d'existir a `static/social_icons/` (sense l'extensió `.svg`).
 
 Nota pels usuaris de Zola 0.19.X: quan hi ha dos noms de fitxer a `feed_filenames`, només s'enllaçarà el primer al peu de pàgina.
 
